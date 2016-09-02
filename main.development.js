@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, Menu, shell, ipcMain, dialog } from 'electron';
 
 import {diretoryTreeToObj} from './utils';
 import _ from 'lodash';
@@ -50,19 +50,6 @@ app.on('ready', async () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
-    diretoryTreeToObj('D:/demo/spectacle-boilerplate', (err, res) => {
-      let content = '';
-      if(err) {
-        content = JSON.stringify(err);
-      }
-      content = JSON.stringify({
-        children: res,
-        name: path.basename('D:/demo/spectacle-boilerplate'),
-        id: 'D:/demo/spectacle-boilerplate',
-        type: 'folder'
-      });
-      mainWindow.webContents.send('loadfiles', content);
-    });
   });
 
   mainWindow.on('closed', () => {
@@ -172,7 +159,23 @@ app.on('ready', async () => {
       label: '&File',
       submenu: [{
         label: '&Open',
-        accelerator: 'Ctrl+O'
+        accelerator: 'Ctrl+O',
+        click() {
+          const folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']})[0].replace(/\\/g, '/');
+          diretoryTreeToObj(folderPath, (err, res) => {
+            let content = '';
+            if(err) {
+              content = JSON.stringify(err);
+            }
+            content = JSON.stringify({
+              children: res,
+              name: path.basename(folderPath),
+              id: folderPath,
+              type: 'folder'
+            });
+            mainWindow.webContents.send('loadfiles', content);
+          });
+        }
       }, {
         label: '&Save',
         accelerator: 'Ctrl+S',
