@@ -80,9 +80,28 @@ app.on('ready', async () => {
 
   if (process.platform === 'darwin') {
     template = [{
-      label: 'Host',
+      label: 'Markdown',
       submenu: [{
-        label: 'Hide ElectronReact',
+        label: 'Open Folder',
+        accelerator: 'Command+O',
+        click() {
+          const folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']})[0].replace(/\\/g, '/');
+          diretoryTreeToObj(folderPath, (err, res) => {
+            let content = '';
+            if(err) {
+              content = JSON.stringify(err);
+            }
+            content = JSON.stringify({
+              children: res,
+              name: path.basename(folderPath),
+              id: folderPath,
+              type: 'folder'
+            });
+            mainWindow.webContents.send('loadfiles', content);
+          });
+        }
+      }, {
+        label: 'Hide Markdown',
         accelerator: 'Command+H',
         selector: 'hide:'
       }, {
