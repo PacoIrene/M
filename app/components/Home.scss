@@ -1,0 +1,17 @@
+.container {
+    height: 100%;
+    .file-tree-system {
+        width: 200px;
+        overflow: auto;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-right: 1px solid #505050;
+    }
+    .editorContainer {
+        margin-left: 200px;
+        padding-left: 10px;
+        height: 100%;
+    }
+}

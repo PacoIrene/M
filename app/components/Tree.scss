@@ -1,0 +1,20 @@
+.file-tree-system {
+    padding: 5px;
+    cursor: default;
+    .file-tree-folder .file-tree-title {
+        color: #fff;
+    }
+    .file-tree-folder .file-tree-folder-children {
+        padding-left: 10px;
+        display: block;
+    }
+    .file-tree-folder .file-tree-folder-children.hide {
+        display: none;
+    }
+    .file-tree-file .file-tree-title {
+        color: #ff9;
+    }
+    .file-tree-file.file-selected .file-tree-title {
+        color: #bbb;
+    }
+}
