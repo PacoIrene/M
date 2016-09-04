@@ -1,10 +1,11 @@
-import {INITIAL_STATE, TOGGLE_EXPANDSTATE, OPEN_FILE, FILE_CONTENT_CHANGE} from '../actions/file';
+import {INITIAL_STATE, TOGGLE_EXPANDSTATE, OPEN_FILE, FILE_CONTENT_CHANGE, SYNC_CONTENT} from '../actions/file';
 import _ from 'lodash';
 import Immutable from 'immutable';
 
 const initialState = Immutable.fromJS({
   currentFilePath: '',
   fileContent: '',
+  previewContent: '',
   files: {
     name: '',
     id: '',
@@ -38,7 +39,9 @@ export default function fileSystem(state = initialState, action) {
     case OPEN_FILE:
       return state.set('currentFilePath', action.id);
     case FILE_CONTENT_CHANGE:
-      return state.set('fileContent', action.content);
+      return state.set('fileContent', action.content).set('previewContent', action.content);
+    case SYNC_CONTENT:
+      return state.set('previewContent', action.content);
     default:
       return state;
   }

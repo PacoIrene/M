@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Immutable from 'immutable';
 import {ipcRenderer} from 'electron';
 
-import {initialState, toggleExpandState, openFile} from '../actions/file';
+import {initialState, toggleExpandState, openFile, syncContent} from '../actions/file';
 import {bindActionCreators} from 'redux';
 
 class HomePage extends Component {
@@ -18,13 +18,15 @@ class HomePage extends Component {
   }
   render() {
     const {files, dispatch} = this.props;
-    const actions = bindActionCreators({toggleExpandState}, dispatch);
+    const actions = bindActionCreators({toggleExpandState, syncContent}, dispatch);
     const mutableFiles = files.toJS();
     return (
       <Home files={mutableFiles.files}
         currentFilePath={mutableFiles.currentFilePath}
         fileContent={mutableFiles.fileContent}
+        previewContent={mutableFiles.previewContent}
         toggleExpandState={actions.toggleExpandState}
+        syncContent={actions.syncContent}
         openFile={this.handleOpenFile.bind(this)} />
     );
   }

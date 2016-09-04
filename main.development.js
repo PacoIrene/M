@@ -135,6 +135,11 @@ app.on('ready', async () => {
           mainWindow.webContents.reload();
         }
       }, {
+        label: 'Back',
+        click() {
+          mainWindow.webContents.goBack();
+        }
+      }, {
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click() {
@@ -215,6 +220,11 @@ app.on('ready', async () => {
         accelerator: 'Ctrl+R',
         click() {
           mainWindow.webContents.reload();
+        }
+      }, {
+        label: '&Back',
+        click() {
+          mainWindow.webContents.goBack();
         }
       }, {
         label: 'Toggle &Full Screen',

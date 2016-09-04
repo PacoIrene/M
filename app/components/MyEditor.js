@@ -10,7 +10,7 @@ export default class MyEditor extends Component {
       const currentContent = this.state.editorState.getCurrentContent().getPlainText();
       const nextContent = editorState.getCurrentContent().getPlainText();
       if (currentContent !== nextContent) {
-        console.log('changed');
+        this.props.syncContent(nextContent);
       }
       this.setState({editorState});
     }

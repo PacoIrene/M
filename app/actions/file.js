@@ -8,6 +8,8 @@ export const OPEN_FILE = 'OPEN_FILE';
 
 export const FILE_CONTENT_CHANGE = 'FILE_CONTENT_CHANGE';
 
+export const SYNC_CONTENT = 'SYNC_CONTENT';
+
 export function openFile(id) {
   return {
     type: OPEN_FILE,
@@ -35,6 +37,13 @@ export function toggleExpandState(id, name) {
     id,
     name
   };
+}
+
+export function syncContent(content) {
+  return {
+    type: SYNC_CONTENT,
+    content
+  }
 }
 
 export function initialState() {

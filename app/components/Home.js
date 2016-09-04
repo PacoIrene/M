@@ -14,7 +14,10 @@ export default class Home extends Component {
                 currentFilePath={this.props.currentFilePath}
                 toggleExpandState={this.props.toggleExpandState}
                 openFile={this.props.openFile} />
-            <EditorAndPreview fileContent={this.props.fileContent}/>
+            <EditorAndPreview
+              fileContent={this.props.fileContent}
+              previewContent={this.props.previewContent}
+              syncContent={this.props.syncContent}/>
       </div>
     );
   }
