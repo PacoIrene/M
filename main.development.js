@@ -91,12 +91,20 @@ app.on('ready', async () => {
             if(err) {
               content = JSON.stringify(err);
             }
+
             content = JSON.stringify({
               children: res,
               name: path.basename(folderPath),
               id: folderPath,
               type: 'folder'
             });
+            if (!res) {
+              content = JSON.stringify({
+                name: path.basename(folderPath),
+                id: folderPath,
+                type: 'file'
+              });
+            }
             mainWindow.webContents.send('loadfiles', content);
           });
         }
@@ -197,6 +205,13 @@ app.on('ready', async () => {
               id: folderPath,
               type: 'folder'
             });
+            if (!res) {
+              content = JSON.stringify({
+                name: path.basename(folderPath),
+                id: folderPath,
+                type: 'file'
+              });
+            }
             mainWindow.webContents.send('loadfiles', content);
           });
         }

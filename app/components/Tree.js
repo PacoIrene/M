@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FolderNode from './FolderNode';
+import FileNode from './FileNode';
 import './Tree.scss';
 
 export default class Tree extends Component {
@@ -15,9 +16,15 @@ export default class Tree extends Component {
             openFile: this.props.openFile
         };
 
+        let contentNode = <FolderNode {...sys}/>;
+        if (type === 'file') {
+          contentNode = <FileNode {...sys}
+              selected={currentFilePath === id}></FileNode>
+        }
+
         return (
             <div className='file-tree-system'>
-                <FolderNode {...sys}/>
+              {contentNode}
             </div>
         );
     }
