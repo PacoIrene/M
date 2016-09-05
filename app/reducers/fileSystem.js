@@ -1,4 +1,4 @@
-import {INITIAL_STATE, TOGGLE_EXPANDSTATE, OPEN_FILE, FILE_CONTENT_CHANGE, SYNC_CONTENT} from '../actions/file';
+import {INITIAL_STATE, TOGGLE_EXPANDSTATE, OPEN_FILE, FILE_CONTENT_CHANGE, SYNC_CONTENT, SUCCESS_SAVE} from '../actions/file';
 import _ from 'lodash';
 import Immutable from 'immutable';
 
@@ -42,6 +42,8 @@ export default function fileSystem(state = initialState, action) {
       return state.set('fileContent', action.content).set('previewContent', action.content);
     case SYNC_CONTENT:
       return state.set('previewContent', action.content);
+    case SUCCESS_SAVE:
+      return state;
     default:
       return state;
   }

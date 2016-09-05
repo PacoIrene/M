@@ -59,8 +59,19 @@ app.on('ready', async () => {
   ipcMain.on('openfile', (event, arg) => {
     fs.readFile(arg, "utf-8", (err, data) => {
       if (err) throw err;
-      console.log(data.toString());
       mainWindow.webContents.send('readfilecontent', data.toString());
+    });
+  });
+
+  ipcMain.on('savefile', (event, arg) => {
+    const {currentFilePath,fileContent} = JSON.parse(arg);
+    console.log(currentFilePath);
+    fs.writeFile(currentFilePath, fileContent, err => {
+      if(err) {
+        return console.log(err);
+      }
+
+      mainWindow.webContents.send('successsave');
     });
   });
 

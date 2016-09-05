@@ -8,9 +8,26 @@ import configureStore from './store/configureStore';
 import './reset.css';
 import './app.global.css';
 import {ipcRenderer} from 'electron';
+import {SUCCESS_SAVE} from './actions/file';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
+
+ipcRenderer.on('save', (event, message) => {
+  const fileSystem = store.getState().fileSystem.toJS();
+  const currentFilePath = fileSystem.currentFilePath;
+  const fileContent = fileSystem.previewContent;
+  ipcRenderer.send('savefile', JSON.stringify({
+    currentFilePath,
+    fileContent
+  }));
+});
+
+ipcRenderer.on('successsave', (event, message) => {
+    store.dispatch({
+        type: SUCCESS_SAVE
+    })
+});
 
 render(
   <Provider store={store}>
