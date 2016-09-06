@@ -42,6 +42,14 @@ export function toggleExpandState(id, name) {
 }
 
 export function syncContent(content) {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(syncContentInfo(content));
+    }, 500);
+  }
+}
+
+export function syncContentInfo(content) {
   return {
     type: SYNC_CONTENT,
     content
