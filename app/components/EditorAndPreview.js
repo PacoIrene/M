@@ -18,7 +18,7 @@ export default class EditorAndPreview extends Component {
             editor = <MyEditor content={content} ref='editor' syncContent={this.props.syncContent}></MyEditor>;
         }
         if (this.props.previewContent !== '') {
-          preview = <div className="preview markdown-body" dangerouslySetInnerHTML={{__html: marked(this.props.previewContent)}}></div>;
+          preview = <div className="preview markdown-body" onClick={(e) => {e.preventDefault();}}dangerouslySetInnerHTML={{__html: marked(this.props.previewContent)}}></div>;
         }
 
         return (
