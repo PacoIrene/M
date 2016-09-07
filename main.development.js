@@ -96,7 +96,11 @@ app.on('ready', async () => {
         label: 'Open Folder',
         accelerator: 'Command+O',
         click() {
-          const folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']})[0].replace(/\\/g, '/');
+          let folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']});
+          if (!folderPath) {
+            return;
+          }
+          folderPath = folderPath[0].replace(/\\/g, '/');
           diretoryTreeToObj(folderPath, (err, res) => {
             let content = '';
             if(err) {
@@ -204,7 +208,11 @@ app.on('ready', async () => {
         label: '&Open',
         accelerator: 'Ctrl+O',
         click() {
-          const folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']})[0].replace(/\\/g, '/');
+          let folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']});
+          if (!folderPath) {
+            return;
+          }
+          folderPath = folderPath[0].replace(/\\/g, '/');
           diretoryTreeToObj(folderPath, (err, res) => {
             let content = '';
             if(err) {
