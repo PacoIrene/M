@@ -35,6 +35,37 @@ const installExtensions = async () => {
   }
 };
 
+const openFileOrFolder = () => {
+  let folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']});
+  if (!folderPath) {
+    return;
+  }
+  folderPath = folderPath[0].replace(/\\/g, '/');
+  diretoryTreeToObj(folderPath, (err, res) => {
+    let content = '';
+    if(err) {
+      content = JSON.stringify(err);
+    }
+
+    if (!res) {
+      content = JSON.stringify({
+        name: path.basename(folderPath),
+        id: folderPath,
+        type: 'file'
+      });
+    }
+    else {
+      content = JSON.stringify({
+        children: res,
+        name: path.basename(folderPath),
+        id: folderPath,
+        type: 'folder'
+      });
+    }
+    mainWindow.webContents.send('loadfiles', content);
+  });
+};
+
 app.on('ready', async () => {
   await installExtensions();
 
@@ -96,32 +127,7 @@ app.on('ready', async () => {
         label: 'Open Folder',
         accelerator: 'Command+O',
         click() {
-          let folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']});
-          if (!folderPath) {
-            return;
-          }
-          folderPath = folderPath[0].replace(/\\/g, '/');
-          diretoryTreeToObj(folderPath, (err, res) => {
-            let content = '';
-            if(err) {
-              content = JSON.stringify(err);
-            }
-
-            content = JSON.stringify({
-              children: res,
-              name: path.basename(folderPath),
-              id: folderPath,
-              type: 'folder'
-            });
-            if (!res) {
-              content = JSON.stringify({
-                name: path.basename(folderPath),
-                id: folderPath,
-                type: 'file'
-              });
-            }
-            mainWindow.webContents.send('loadfiles', content);
-          });
+          openFileOrFolder();
         }
       }, {
         label: 'Hide Markdown',
@@ -208,31 +214,7 @@ app.on('ready', async () => {
         label: '&Open',
         accelerator: 'Ctrl+O',
         click() {
-          let folderPath = dialog.showOpenDialog({properties: ['openFile', 'openDirectory']});
-          if (!folderPath) {
-            return;
-          }
-          folderPath = folderPath[0].replace(/\\/g, '/');
-          diretoryTreeToObj(folderPath, (err, res) => {
-            let content = '';
-            if(err) {
-              content = JSON.stringify(err);
-            }
-            content = JSON.stringify({
-              children: res,
-              name: path.basename(folderPath),
-              id: folderPath,
-              type: 'folder'
-            });
-            if (!res) {
-              content = JSON.stringify({
-                name: path.basename(folderPath),
-                id: folderPath,
-                type: 'file'
-              });
-            }
-            mainWindow.webContents.send('loadfiles', content);
-          });
+          openFileOrFolder();
         }
       }, {
         label: '&Save',
