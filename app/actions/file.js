@@ -1,41 +1,30 @@
 import {ipcRenderer} from 'electron';
-
-export const INITIAL_STATE = 'INITIAL_STATE';
-
-export const TOGGLE_EXPANDSTATE = 'TOGGLE_EXPANDSTATE';
-
-export const OPEN_FILE = 'OPEN_FILE';
-
-export const FILE_CONTENT_CHANGE = 'FILE_CONTENT_CHANGE';
-
-export const SYNC_CONTENT = 'SYNC_CONTENT';
-
-export const SUCCESS_SAVE = 'SUCCESS_SAVE';
+import * as types from '../constants/actionTypes';
 
 export function openFile(id) {
   return {
-    type: OPEN_FILE,
+    type: types.OPEN_FILE,
     id
   };
 }
 
 export function changeFileContent(content) {
   return {
-    type: FILE_CONTENT_CHANGE,
+    type: types.FILE_CONTENT_CHANGE,
     content
   }
 }
 
 export function initial(fileSystem) {
   return {
-    type: INITIAL_STATE,
+    type: types.INITIAL_STATE,
     fileSystem
   };
 }
 
 export function toggleExpandState(id, name) {
   return {
-    type: TOGGLE_EXPANDSTATE,
+    type: types.TOGGLE_EXPANDSTATE,
     id,
     name
   };
@@ -51,7 +40,7 @@ export function syncContent(content) {
 
 export function syncContentInfo(content) {
   return {
-    type: SYNC_CONTENT,
+    type: types.SYNC_CONTENT,
     content
   }
 }

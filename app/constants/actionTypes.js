@@ -1,0 +1,13 @@
+export const INITIAL_STATE = 'INITIAL_STATE';
+
+export const TOGGLE_EXPANDSTATE = 'TOGGLE_EXPANDSTATE';
+
+export const OPEN_FILE = 'OPEN_FILE';
+
+export const FILE_CONTENT_CHANGE = 'FILE_CONTENT_CHANGE';
+
+export const SYNC_CONTENT = 'SYNC_CONTENT';
+
+export const SUCCESS_SAVE = 'SUCCESS_SAVE';
+
+export const CREATE_FILE = 'CREATE_FILE';

@@ -25,6 +25,7 @@ class HomePage extends Component {
         currentFilePath={mutableFiles.currentFilePath}
         fileContent={mutableFiles.fileContent}
         previewContent={mutableFiles.previewContent}
+        newFile={mutableFiles.newFile}
         toggleExpandState={actions.toggleExpandState}
         syncContent={actions.syncContent}
         openFile={this.handleOpenFile.bind(this)} />
@@ -33,6 +34,9 @@ class HomePage extends Component {
 
   handleOpenFile(id) {
     const {dispatch} = this.props;
+    if (!id) {
+      return;
+    }
     ipcRenderer.send('openfile', id);
     dispatch(openFile(id));
   }

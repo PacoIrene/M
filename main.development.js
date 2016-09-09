@@ -95,15 +95,26 @@ app.on('ready', async () => {
   });
 
   ipcMain.on('savefile', (event, arg) => {
-    const {currentFilePath,fileContent} = JSON.parse(arg);
-    console.log(currentFilePath);
-    fs.writeFile(currentFilePath, fileContent, err => {
-      if(err) {
-        return console.log(err);
-      }
+    const saveFile = (path, content) => {
+      fs.writeFile(path, content, err => {
+        if(err) {
+          return console.log(err);
+        }
 
-      mainWindow.webContents.send('successsave');
-    });
+        mainWindow.webContents.send('successsave', path);
+      });
+    }
+    const {currentFilePath, fileContent} = JSON.parse(arg);
+    if (currentFilePath === '') {
+      dialog.showSaveDialog(fileName => {
+        if (!fileName){
+          return;
+        }
+        saveFile(fileName, fileContent);
+      });
+      return;
+    }
+    saveFile(currentFilePath, fileContent);
   });
 
   if (process.env.NODE_ENV === 'development') {
@@ -124,6 +135,12 @@ app.on('ready', async () => {
     template = [{
       label: 'Markdown',
       submenu: [{
+        label: 'New File',
+        accelerator: 'Command+N',
+        click() {
+          mainWindow.webContents.send('createfile');
+        }
+      },{
         label: 'Open Folder',
         accelerator: 'Command+O',
         click() {
@@ -211,6 +228,12 @@ app.on('ready', async () => {
     template = [{
       label: '&File',
       submenu: [{
+        label: '&New File',
+        accelerator: 'Ctrl+N',
+        click() {
+          mainWindow.webContents.send('createfile');
+        }
+      },{
         label: '&Open',
         accelerator: 'Ctrl+O',
         click() {
