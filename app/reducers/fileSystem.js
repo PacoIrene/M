@@ -6,7 +6,6 @@ const initialState = Immutable.fromJS({
   currentFilePath: '',
   fileContent: '',
   previewContent: '',
-  newFile: false,
   files: {
     name: '',
     id: '',
@@ -38,20 +37,13 @@ export default function fileSystem(state = initialState, action) {
       }
       return state.updateIn([...pathArray, 'expanded'], val => !val);
     case types.OPEN_FILE:
-      return state.set('currentFilePath', action.id).set('newFile', false);
+      return state.set('currentFilePath', action.id);
     case types.FILE_CONTENT_CHANGE:
       return state.set('fileContent', action.content).set('previewContent', action.content);
     case types.SYNC_CONTENT:
       return state.set('previewContent', action.content);
     case types.SUCCESS_SAVE:
-      const path = action.path;
-      // TODO: 如果新增的path没有 那么就要更新tree的节点了
       return state;
-    case types.CREATE_FILE:
-      return state.set('newFile', true)
-                  .set('currentFilePath', '')
-                  .set('fileContent', '')
-                  .set('previewContent', '');
     default:
       return state;
   }

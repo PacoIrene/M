@@ -8,7 +8,7 @@ import configureStore from './store/configureStore';
 import './reset.css';
 import './app.global.css';
 import {ipcRenderer} from 'electron';
-import {SUCCESS_SAVE, CREATE_FILE} from './constants/actionTypes';
+import {SUCCESS_SAVE} from './constants/actionTypes';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
@@ -27,12 +27,6 @@ ipcRenderer.on('successsave', (event, message) => {
     store.dispatch({
         type: SUCCESS_SAVE,
         path: message
-    });
-});
-
-ipcRenderer.on('createfile', (event, message) => {
-    store.dispatch({
-        type: CREATE_FILE
     });
 });
 

@@ -14,7 +14,7 @@ export default class FolderNode extends Component {
         let childrenNode = null;
         if (children) {
             const sortedChildren = _.orderBy(_.values(children), ['type', child => {
-                return child.id.toLowerCase();
+                return child.id && child.id.toLowerCase();
             }], ['desc', 'asc']);
             childrenNode = <ul className={'file-tree-folder-children ' + classNames({'hide': !expanded})}>
                 {

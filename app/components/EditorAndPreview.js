@@ -6,9 +6,8 @@ import marked from 'marked';
 
 export default class EditorAndPreview extends Component {
     componentWillReceiveProps(nextProps) {
-        if ((nextProps.fileContent !== '' && this.refs.editor
-            && nextProps.fileContent === nextProps.previewContent)
-            || (nextProps.newFile && !this.props.newFile && this.refs.editor)) {
+        if (nextProps.fileContent !== '' && this.refs.editor
+            && nextProps.fileContent === nextProps.previewContent) {
             this.refs.editor.setContent(nextProps.fileContent);
         }
     }
@@ -16,11 +15,10 @@ export default class EditorAndPreview extends Component {
         let editor = null
         let preview  = null;
         const content = this.props.fileContent;
-        const newFile = this.props.newFile;
-        if (content !== '' || newFile) {
+        if (content !== '') {
             editor = <MyEditor content={content} ref='editor' syncContent={this.props.syncContent}></MyEditor>;
         }
-        if (this.props.previewContent !== '' || newFile) {
+        if (this.props.previewContent !== '') {
           preview = <div className="preview markdown-body" onClick={(e) => {e.preventDefault();}}dangerouslySetInnerHTML={{__html: marked(this.props.previewContent)}}></div>;
         }
 

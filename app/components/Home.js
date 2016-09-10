@@ -17,7 +17,6 @@ export default class Home extends Component {
             <EditorAndPreview
               fileContent={this.props.fileContent}
               previewContent={this.props.previewContent}
-              newFile={this.props.newFile}
               syncContent={this.props.syncContent}/>
       </div>
     );
