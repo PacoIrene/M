@@ -11,7 +11,7 @@ const initialState = Immutable.fromJS({
     name: '',
     id: '',
     children: {},
-    type: 'folder'
+    type: ''
   }
 });
 

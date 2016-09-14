@@ -38,6 +38,10 @@ export default merge(baseConfig, {
           'style-loader',
           'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         ]
+      },
+      {
+        test: /\.(otf|ttf|eot|png|jpg|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader'
       }
     ]
   },

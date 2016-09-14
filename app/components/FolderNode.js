@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classNames from 'classNames';
 import _ from 'lodash';
 import FileNode from './FileNode';
+import 'icono/dist/icono.min.css';
 
 export default class FolderNode extends Component {
   constructor(props) {
@@ -48,7 +49,7 @@ export default class FolderNode extends Component {
     return (
         <div className={'file-tree-folder ' + classNames({'expanded': expanded})}>
           <span
-            className='file-tree-title'
+            className='folder-tree-title file-tree-title'
             onClick={this.expandChildren.bind(this)}
             style={{
               paddingLeft: 10 * depth

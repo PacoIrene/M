@@ -12,7 +12,7 @@ export default class FileNode extends Component {
     return (
       <div className={'file-tree-file ' + classNames({'file-selected': selected})}
         style={{
-            paddingLeft: depth * 10
+            paddingLeft: depth * 10 + 8
         }}>
         <span className='file-tree-title' onClick={this.openFile.bind(this)}>{name}</span>
       </div>

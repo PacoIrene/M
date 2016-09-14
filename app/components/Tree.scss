@@ -1,6 +1,21 @@
 .file-tree-system {
   padding: 5px 0;
   cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  .file-tree-folder>.folder-tree-title:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    transform: rotate(90deg);
+    background: url('../public/images/triangle.png') no-repeat;
+    transition: 0.2s transform;
+  }
+  .file-tree-folder.expanded>.folder-tree-title:before {
+    transform: rotate(180deg);
+    transition: 0.2s transform;
+  }
   .file-tree-folder .file-tree-title,
   .file-tree-file .file-tree-title {
     color: #000;

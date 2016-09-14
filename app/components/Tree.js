@@ -16,10 +16,13 @@ export default class Tree extends Component {
       openFile: this.props.openFile
     };
 
-    let contentNode = <FolderNode {...sys} depth={1}/>;
+    let contentNode = null;
     if (type === 'file') {
       contentNode = <FileNode {...sys}
         selected={currentFilePath === id} depth={1}></FileNode>
+    }
+    else if (type === 'folder') {
+      contentNode = <FolderNode {...sys} depth={1}/>
     }
 
     return (
