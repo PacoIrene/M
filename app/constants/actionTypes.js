@@ -9,3 +9,5 @@ export const FILE_CONTENT_CHANGE = 'FILE_CONTENT_CHANGE';
 export const SYNC_CONTENT = 'SYNC_CONTENT';
 
 export const SUCCESS_SAVE = 'SUCCESS_SAVE';
+
+export const TOGGLE_PREVIEW = 'TOGGLE_PREVIEW';

@@ -18,7 +18,7 @@ export default class MyEditor extends Component {
   render() {
     const {editorState} = this.state;
     return(
-        <div className='editor'>
+        <div className='editor' style={this.props.style}>
         <Editor
             editorState={editorState}
             onChange={this.onChange}

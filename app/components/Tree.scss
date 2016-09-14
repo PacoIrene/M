@@ -1,20 +1,19 @@
 .file-tree-system {
-    padding: 5px;
-    cursor: default;
-    .file-tree-folder .file-tree-title {
-        color: #fff;
+  padding: 5px 0;
+  cursor: default;
+  .file-tree-folder .file-tree-title,
+  .file-tree-file .file-tree-title {
+    color: #000;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .file-tree-folder .file-tree-folder-children.hide {
+    display: none;
+  }
+  .file-tree-file.file-selected {
+    .file-tree-title {
+      color: #fff;
     }
-    .file-tree-folder .file-tree-folder-children {
-        padding-left: 10px;
-        display: block;
-    }
-    .file-tree-folder .file-tree-folder-children.hide {
-        display: none;
-    }
-    .file-tree-file .file-tree-title {
-        color: #ff9;
-    }
-    .file-tree-file.file-selected .file-tree-title {
-        color: #bbb;
-    }
+    background-image: linear-gradient(to bottom, #b2b2b2, #8d8d8d);
+  }
 }

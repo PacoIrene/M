@@ -182,11 +182,23 @@ app.on('ready', async () => {
         click() {
           mainWindow.toggleDevTools();
         }
+      }, {
+        label: 'Toggle &Preview',
+        accelerator: 'Command+P',
+        click() {
+          mainWindow.webContents.send('togglepreview');
+        }
       }] : [{
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
         click() {
           mainWindow.setFullScreen(!mainWindow.isFullScreen());
+        }
+      }, {
+        label: 'Toggle &Preview',
+        accelerator: 'Command+P',
+        click() {
+          mainWindow.webContents.send('togglepreview');
         }
       }]
     }, {
@@ -256,11 +268,23 @@ app.on('ready', async () => {
         click() {
           mainWindow.toggleDevTools();
         }
+      }, {
+        label: 'Toggle &Preview',
+        accelerator: 'Ctrl+P',
+        click() {
+          mainWindow.webContents.send('togglepreview');
+        }
       }] : [{
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
         click() {
           mainWindow.setFullScreen(!mainWindow.isFullScreen());
+        }
+      }, {
+        label: 'Toggle &Preview',
+        accelerator: 'Ctrl+P',
+        click() {
+          mainWindow.webContents.send('togglepreview');
         }
       }]
     }];

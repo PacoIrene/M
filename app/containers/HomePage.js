@@ -24,6 +24,7 @@ class HomePage extends Component {
       <Home files={mutableFiles.files}
         currentFilePath={mutableFiles.currentFilePath}
         fileContent={mutableFiles.fileContent}
+        previewShow={mutableFiles.previewShow}
         previewContent={mutableFiles.previewContent}
         toggleExpandState={actions.toggleExpandState}
         syncContent={actions.syncContent}

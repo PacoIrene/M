@@ -6,6 +6,7 @@ const initialState = Immutable.fromJS({
   currentFilePath: '',
   fileContent: '',
   previewContent: '',
+  previewShow: false,
   files: {
     name: '',
     id: '',
@@ -44,6 +45,8 @@ export default function fileSystem(state = initialState, action) {
       return state.set('previewContent', action.content);
     case types.SUCCESS_SAVE:
       return state;
+    case types.TOGGLE_PREVIEW:
+      return state.updateIn(['previewShow'], val => !val);
     default:
       return state;
   }

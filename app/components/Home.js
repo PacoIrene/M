@@ -53,6 +53,7 @@ export default class Home extends Component {
           }}
           fileContent={this.props.fileContent}
           previewContent={this.props.previewContent}
+          previewShow={this.props.previewShow}
           syncContent={this.props.syncContent}/>
       </div>
     );

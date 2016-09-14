@@ -8,7 +8,7 @@ import configureStore from './store/configureStore';
 import './reset.css';
 import './app.global.css';
 import {ipcRenderer} from 'electron';
-import {SUCCESS_SAVE} from './constants/actionTypes';
+import {SUCCESS_SAVE, TOGGLE_PREVIEW} from './constants/actionTypes';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
@@ -24,10 +24,16 @@ ipcRenderer.on('save', (event, message) => {
 });
 
 ipcRenderer.on('successsave', (event, message) => {
-    store.dispatch({
-        type: SUCCESS_SAVE,
-        path: message
-    });
+  store.dispatch({
+    type: SUCCESS_SAVE,
+    path: message
+  });
+});
+
+ipcRenderer.on('togglepreview', (event, message) => {
+  store.dispatch({
+    type: TOGGLE_PREVIEW
+  });
 });
 
 render(

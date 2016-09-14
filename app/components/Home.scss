@@ -1,18 +1,19 @@
 .container {
+  height: 100%;
+  .file-tree-system {
+    overflow: auto;
     height: 100%;
-    .file-tree-system {
-        overflow: auto;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-    .draggable-bound {
-        background-color: #505050;
-        cursor: w-resize;
-    }
-    .editorContainer {
-        padding-left: 10px;
-        height: 100%;
-    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #e6e6e6;
+  }
+  .draggable-bound {
+    background-color: #505050;
+    cursor: w-resize;
+  }
+  .editorContainer {
+    padding-left: 10px;
+    height: 100%;
+  }
 }
