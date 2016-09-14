@@ -23,7 +23,9 @@ export default class Tree extends Component {
         }
 
         return (
-            <div className='file-tree-system'>
+            <div
+                className='file-tree-system'
+                style={this.props.style}>
               {contentNode}
             </div>
         );

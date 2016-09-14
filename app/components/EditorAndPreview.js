@@ -23,7 +23,9 @@ export default class EditorAndPreview extends Component {
         }
 
         return (
-            <div className='editorContainer'>
+            <div
+                className='editorContainer'
+                style={this.props.style}>
                 {editor}
                 {preview}
             </div>);
