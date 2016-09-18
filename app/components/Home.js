@@ -24,6 +24,7 @@ export default class Home extends Component {
           }}
           currentFilePath={this.props.currentFilePath}
           toggleExpandState={this.props.toggleExpandState}
+          editable={this.props.editable}
           openFile={this.props.openFile} />
         <EditorAndPreview
           style={{

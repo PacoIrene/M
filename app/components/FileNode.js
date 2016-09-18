@@ -7,10 +7,10 @@ export default class FileNode extends Component {
   }
 
   render() {
-    const {type, name, id, selected, depth} = this.props;
+    const {type, name, id, selected, depth, editable} = this.props;
 
     return (
-      <div className={'file-tree-file ' + classNames({'file-selected': selected})}
+      <div className={'file-tree-file ' + classNames({'file-selected': selected, 'file-editable': editable && selected})}
         style={{
             paddingLeft: depth * 10 + 8
         }}>

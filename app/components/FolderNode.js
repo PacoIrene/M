@@ -10,7 +10,7 @@ export default class FolderNode extends Component {
   }
 
   render() {
-    const {expanded, type, name, id, children, toggleExpandState, openFile, currentFilePath, depth} = this.props;
+    const {expanded, type, name, id, children, toggleExpandState, openFile, currentFilePath, depth, editable} = this.props;
 
     let childrenNode = null;
     if (children) {
@@ -37,6 +37,7 @@ export default class FolderNode extends Component {
                   <FileNode {...child}
                     depth={depth + 1}
                     selected={currentFilePath === child.id}
+                    editable={editable}
                     openFile={openFile}></FileNode>
                 </li>
               );

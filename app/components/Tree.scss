@@ -31,4 +31,9 @@
     }
     background-image: linear-gradient(to bottom, #b2b2b2, #8d8d8d);
   }
+  .file-tree-file.file-editable {
+    .file-tree-title {
+      color: #e0c285;
+    }
+  }
 }

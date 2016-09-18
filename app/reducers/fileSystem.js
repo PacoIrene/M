@@ -7,6 +7,7 @@ const initialState = Immutable.fromJS({
   fileContent: '',
   previewContent: '',
   previewShow: false,
+  editable: false,
   files: {
     name: '',
     id: '',
@@ -38,13 +39,15 @@ export default function fileSystem(state = initialState, action) {
       }
       return state.updateIn([...pathArray, 'expanded'], val => !val);
     case types.OPEN_FILE:
-      return state.set('currentFilePath', action.id);
+      return state.set('currentFilePath', action.id).set('editable', false);
     case types.FILE_CONTENT_CHANGE:
-      return state.set('fileContent', action.content).set('previewContent', action.content);
+      return state.set('fileContent', action.content)
+                  .set('previewContent', action.content)
+                  .set('editable', false);
     case types.SYNC_CONTENT:
-      return state.set('previewContent', action.content);
+      return state.set('previewContent', action.content).set('editable', true);
     case types.SUCCESS_SAVE:
-      return state;
+      return state.set('editable', false);
     case types.TOGGLE_PREVIEW:
       return state.updateIn(['previewShow'], val => !val);
     default:

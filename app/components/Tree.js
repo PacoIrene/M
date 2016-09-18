@@ -13,7 +13,8 @@ export default class Tree extends Component {
 
     const sys = {id, name, expanded, type, children, currentFilePath,
       toggleExpandState: this.props.toggleExpandState,
-      openFile: this.props.openFile
+      openFile: this.props.openFile,
+      editable: this.props.editable
     };
 
     let contentNode = null;
