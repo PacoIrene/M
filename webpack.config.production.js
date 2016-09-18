@@ -28,6 +28,16 @@ const config = merge(baseConfig, {
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
         )
+      },
+
+      {
+        test: /\.scss$/,
+        loader: 'style-loader!css-loader!sass-loader'
+      },
+
+      {
+        test: /\.(otf|ttf|eot|png|jpg|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader'
       }
     ]
   },
